@@ -1,6 +1,4 @@
 @import "tailwindcss";
-@import "@fontsource/instrument-sans/latin-400.css";
-@import "@fontsource/instrument-sans/latin-500.css";
 
 /* Semantic theme tokens (Tailwind v4 CSS-first config — no tailwind.config.ts
    needed). Light values here; dark values are redefined under the
