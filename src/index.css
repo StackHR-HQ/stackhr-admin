@@ -26,14 +26,29 @@
   --color-line: #e5e4e7;
   --color-accent: #0066ff;
   --color-accent-ink: #ffffff;
+  --color-accent-surface: #e8f0ff;
   --color-positive: #15803d;
+  --color-positive-surface: #e7f6ec;
   --color-critical: #dc2626;
+  --color-critical-surface: #fdecec;
+  --color-warning: #a4610f;
+  --color-warning-surface: #fbefd8;
+  --color-info: #1d4ed8;
+  --color-info-surface: #e6edfd;
 
   /* Fixed brand panel colors — intentionally NOT redefined in the dark
      media query below, so the auth marketing panel stays a consistent
      dark, branded surface regardless of the visitor's OS theme. */
   --color-panel: #0a0d16;
   --color-panel-ink: #ffffff;
+
+  /* Admin sidebar — a permanently dark structural surface (heavier material
+     than content chrome), also intentionally constant across OS themes. */
+  --color-sidebar: #0d0f17;
+  --color-sidebar-surface: #171a24;
+  --color-sidebar-border: #262a37;
+  --color-sidebar-ink: #e7e8ec;
+  --color-sidebar-muted: #8b909e;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -46,8 +61,15 @@
     --color-line: #2e303a;
     --color-accent: #2563eb;
     --color-accent-ink: #ffffff;
+    --color-accent-surface: #1c2740;
     --color-positive: #34d399;
+    --color-positive-surface: #16281f;
     --color-critical: #f87171;
+    --color-critical-surface: #351d1d;
+    --color-warning: #fbbf24;
+    --color-warning-surface: #322612;
+    --color-info: #93b4fb;
+    --color-info-surface: #1a2540;
   }
 }
 
