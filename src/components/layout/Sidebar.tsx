@@ -40,7 +40,7 @@ export function Sidebar({ onNavigate }: { onNavigate?: () => void }) {
 
   return (
     <div className="flex h-full flex-col bg-sidebar text-sidebar-ink">
-      <div className="flex h-[68px] shrink-0 items-center gap-2.5 border-b border-sidebar-border px-5">
+      <div className="flex h-17 shrink-0 items-center gap-2.5 border-b border-sidebar-border px-5">
         <img src="/logo-white.svg" alt="StackHR" className="h-5 w-auto" />
         <span className="rounded bg-sidebar-surface px-1.5 py-0.5 text-[9px] font-medium uppercase tracking-[0.12em] text-sidebar-muted">
           Admin

@@ -2,7 +2,7 @@ import { useParams, useSearchParams } from 'react-router-dom'
 import { CaretDown } from '@phosphor-icons/react'
 import type { NavDetail } from '../../lib/nav'
 import { datasetFor, findRecord } from '../../lib/mock'
-import { initials } from '../../lib/format'
+import { initials, titleCase } from '../../lib/format'
 import { Button } from '../ui/Button'
 import { DataTable } from '../ui/DataTable'
 import { PageHeading } from '../ui/PageHeading'
@@ -22,10 +22,15 @@ export function DetailTemplate({ detail }: { detail: NavDetail }) {
     (record?.name as string) ??
     (record?.subject as string) ??
     (record?.actor as string) ??
+    (record?.business as string) ??
     `${detail.label} ${id}`
 
-  const facts = record
-    ? Object.entries(record).filter(([k]) => !['id', 'name', 'subject', 'actor', 'status'].includes(k))
+  const hidden = ['id', 'name', 'subject', 'actor', 'status']
+  if (!record?.name && !record?.subject && !record?.actor) hidden.push('business')
+  const facts: [string, string][] = record
+    ? Object.entries(record)
+        .filter(([k]) => !hidden.includes(k))
+        .map(([k, v]) => [titleCase(k), String(v)])
     : [
         ['Reference', id],
         ['Created', 'Aug 12, 2026'],

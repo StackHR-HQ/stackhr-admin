@@ -21,6 +21,11 @@ export function count(n: number): string {
   return new Intl.NumberFormat('en-US').format(n)
 }
 
+export function titleCase(key: string): string {
+  const spaced = key.replace(/([a-z])([A-Z])/g, '$1 $2').replace(/[_-]+/g, ' ')
+  return spaced.charAt(0).toUpperCase() + spaced.slice(1)
+}
+
 export function initials(name: string): string {
   return name
     .split(/\s+/)

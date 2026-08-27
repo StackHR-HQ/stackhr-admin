@@ -9,7 +9,7 @@ import {
   metricsFor,
   type ActivityEntry,
 } from '../../lib/mock'
-import { longDate } from '../../lib/format'
+import { longDate, seeded } from '../../lib/format'
 import { Button } from '../ui/Button'
 import { DataTable } from '../ui/DataTable'
 import { MetricCard } from '../ui/MetricCard'
@@ -72,12 +72,18 @@ export function OverviewTemplate({
       </div>
 
       {variant === 'analytics' ? (
-        <Panel className="mb-5">
-          <PanelHeader title={`${item.title} over time`} description="Rolling 12 months · sample data" />
-          <TrendChart seed={item.slug} />
-        </Panel>
-      ) : null}
-
+        <>
+          <Panel className="mb-5">
+            <PanelHeader title={`${item.title} over time`} description="Rolling 12 months · sample data" />
+            <TrendChart seed={item.slug} />
+          </Panel>
+          <Panel className="overflow-hidden">
+            <PanelHeader title="Breakdown by business" description="Sample data" />
+            <DataTable columns={summary.columns} rows={summary.rows.slice(0, 8)} />
+          </Panel>
+        </>
+      ) : (
+        <>
       <div className="grid grid-cols-1 gap-4 lg:grid-cols-[1.5fr_1fr]">
         <Panel>
           <PanelHeader
@@ -148,31 +154,31 @@ export function OverviewTemplate({
           onRowClick={detail ? (row) => navigate(`/${detail.path.split('/:')[0]}/${row.id}`) : undefined}
         />
       </Panel>
+        </>
+      )}
     </>
   )
 }
 
+const CHART_MONTHS = ['Sep', 'Oct', 'Nov', 'Dec', 'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug']
+
 function TrendChart({ seed }: { seed: string }) {
-  const bars = Array.from({ length: 12 }, (_, i) => {
-    let h = 2166136261
-    const s = seed + i
-    for (let k = 0; k < s.length; k++) {
-      h ^= s.charCodeAt(k)
-      h = Math.imul(h, 16777619)
-    }
-    return 24 + ((h >>> 0) % 70)
-  })
-  const months = ['Sep', 'Oct', 'Nov', 'Dec', 'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug']
+  const bars = CHART_MONTHS.map((m, i) => 20 + Math.round(seeded(seed + m + i) * 78))
   return (
-    <div className="px-5 pb-6 pt-1">
-      <div className="flex h-48 items-end gap-2">
+    <div className="px-5 pb-5 pt-1">
+      <div className="flex items-end gap-2">
         {bars.map((h, i) => (
-          <div key={i} className="flex flex-1 flex-col items-center gap-2">
-            <div
-              className={clsx('w-full rounded-t-md', i >= bars.length - 1 ? 'bg-accent' : 'bg-accent/25')}
-              style={{ height: `${h}%` }}
-            />
-            <span className="text-[10px] text-muted">{months[i]}</span>
+          <div key={CHART_MONTHS[i]} className="flex flex-1 flex-col items-center gap-2">
+            <div className="flex h-40 w-full items-end">
+              <div
+                className={clsx(
+                  'w-full rounded-t-md',
+                  i === bars.length - 1 ? 'bg-accent' : 'bg-accent/25',
+                )}
+                style={{ height: `${h}%` }}
+              />
+            </div>
+            <span className="text-[10px] text-muted">{CHART_MONTHS[i]}</span>
           </div>
         ))}
       </div>

@@ -4,17 +4,29 @@ import { sectionBySlug } from '../../lib/nav'
 
 function useCrumbs() {
   const { pathname } = useLocation()
-  const [sectionSlug, itemSlug] = pathname.split('/').filter(Boolean)
+  const segments = pathname.split('/').filter(Boolean)
+  const [sectionSlug] = segments
   const section = sectionBySlug(sectionSlug)
   const crumbs: { label: string; to?: string }[] = [{ label: 'Admin Portal', to: '/' }]
-  if (section) {
-    crumbs.push({ label: section.title })
-    if (itemSlug) {
-      const item =
-        section.items.find((i) => i.slug === itemSlug) ??
-        section.groups?.flatMap((g) => g.items).find((i) => i.slug === itemSlug)
-      crumbs.push({ label: item?.title ?? decodeURIComponent(itemSlug) })
-    }
+  if (!section) return crumbs
+  crumbs.push({ label: section.title })
+
+  const detail = section.details?.find((d) => {
+    const base = d.path.split('/:')[0].split('/')
+    return base.every((seg, i) => segments[i] === seg)
+  })
+  if (detail) {
+    crumbs.push({ label: detail.label })
+    crumbs.push({ label: segments[segments.length - 1] })
+    return crumbs
+  }
+
+  const itemSlug = segments[1]
+  if (itemSlug) {
+    const item =
+      section.items.find((i) => i.slug === itemSlug) ??
+      section.groups?.flatMap((g) => g.items).find((i) => i.slug === itemSlug)
+    crumbs.push({ label: item?.title ?? decodeURIComponent(itemSlug) })
   }
   return crumbs
 }
@@ -23,7 +35,7 @@ export function Topbar({ onMenu }: { onMenu: () => void }) {
   const crumbs = useCrumbs()
 
   return (
-    <header className="flex h-[68px] shrink-0 items-center gap-4 border-b border-line bg-surface px-4 sm:px-7">
+    <header className="flex h-17 shrink-0 items-center gap-4 border-b border-line bg-surface px-4 sm:px-7">
       <button
         onClick={onMenu}
         className="grid size-9 place-items-center rounded-lg text-muted hover:bg-surface-2 lg:hidden"
