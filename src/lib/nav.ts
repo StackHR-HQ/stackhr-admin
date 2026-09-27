@@ -15,6 +15,7 @@ import {
   type Icon,
   IdentificationCard,
   Lifebuoy,
+  ListChecks,
   PlugsConnected,
   Receipt,
   SealCheck,
@@ -107,6 +108,12 @@ export const sections: NavSection[] = [
       'Recent Activity': { dataset: 'activity-feed' },
       'System Alerts': { dataset: 'system-alerts' },
     }),
+  },
+  {
+    title: 'Waitlist',
+    slug: 'waitlist',
+    icon: ListChecks,
+    items: items(['Entries']),
   },
   {
     title: 'Businesses',

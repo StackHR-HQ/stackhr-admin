@@ -1,5 +1,8 @@
-import { List as ListIcon, Bell, MagnifyingGlass } from '@phosphor-icons/react'
+import { List as ListIcon, Bell, MagnifyingGlass, SignOut } from '@phosphor-icons/react'
+import { useQueryClient } from '@tanstack/react-query'
 import { Link, useLocation } from 'react-router-dom'
+import { useAuthStore } from '../../features/auth/store/auth-store'
+import { initials } from '../../lib/format'
 import { sectionBySlug } from '../../lib/nav'
 
 function useCrumbs() {
@@ -33,6 +36,14 @@ function useCrumbs() {
 
 export function Topbar({ onMenu }: { onMenu: () => void }) {
   const crumbs = useCrumbs()
+  const queryClient = useQueryClient()
+  const user = useAuthStore((state) => state.session?.user)
+  const clearSession = useAuthStore((state) => state.clearSession)
+
+  const signOut = () => {
+    queryClient.clear()
+    clearSession()
+  }
 
   return (
     <header className="flex h-17 shrink-0 items-center gap-4 border-b border-line bg-surface px-4 sm:px-7">
@@ -78,12 +89,20 @@ export function Topbar({ onMenu }: { onMenu: () => void }) {
 
         <div className="flex items-center gap-2.5">
           <span className="grid size-8 place-items-center rounded-lg bg-accent-surface text-xs font-semibold text-accent">
-            AO
+            {initials(user?.name ?? user?.email ?? 'Admin')}
           </span>
           <span className="hidden flex-col leading-tight sm:flex">
-            <span className="text-[13px] font-semibold text-ink">Admin Ops</span>
-            <span className="text-[11px] text-muted">Super admin</span>
+            <span className="text-[13px] font-semibold text-ink">{user?.name ?? user?.email}</span>
+            <span className="text-[11px] text-muted">{user?.email}</span>
           </span>
+          <button
+            onClick={signOut}
+            className="grid size-9 place-items-center rounded-lg text-muted hover:bg-surface-2"
+            aria-label="Sign out"
+            title="Sign out"
+          >
+            <SignOut size={18} />
+          </button>
         </div>
       </div>
     </header>
