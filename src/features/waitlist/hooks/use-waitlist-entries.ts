@@ -1,5 +1,5 @@
 import { useQuery } from '@tanstack/react-query'
-import { waitlistApi } from '../api/waitlist-api'
+import { waitlistApi } from '@/features/waitlist/api/waitlist-api'
 
 export const waitlistKeys = { all: ['waitlist'] as const }
 

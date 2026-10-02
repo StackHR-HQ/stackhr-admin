@@ -1,6 +1,6 @@
 import { clsx } from 'clsx'
-import type { Column, Row } from '../../lib/mock'
-import { StatusBadge } from './StatusBadge'
+import type { Column, Row } from '@/lib/mock'
+import { StatusBadge } from '@/components/ui/StatusBadge'
 
 export function DataTable({
   columns,

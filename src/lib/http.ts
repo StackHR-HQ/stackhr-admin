@@ -1,6 +1,6 @@
 import axios from 'axios'
-import { getStoredAuthToken, useAuthStore } from '../features/auth/store/auth-store'
-import { API_BASE_URL } from './env'
+import { getStoredAuthToken, useAuthStore } from '@/features/auth/store/auth-store'
+import { API_BASE_URL } from '@/lib/env'
 
 export type ApiEnvelope<T> = { success: boolean; message: string; data: T }
 

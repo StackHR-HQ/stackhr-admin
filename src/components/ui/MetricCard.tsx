@@ -1,7 +1,7 @@
 import { clsx } from 'clsx'
 import { TrendDown, TrendUp } from '@phosphor-icons/react'
-import type { Metric } from '../../lib/mock'
-import { seeded } from '../../lib/format'
+import type { Metric } from '@/lib/mock'
+import { seeded } from '@/lib/format'
 
 function Sparkline({ seed }: { seed: string }) {
   const bars = Array.from({ length: 9 }, (_, i) => 28 + Math.round(seeded(seed + i) * 64))

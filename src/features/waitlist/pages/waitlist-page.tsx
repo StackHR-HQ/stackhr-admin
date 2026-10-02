@@ -1,13 +1,13 @@
 import { useMemo, useState } from 'react'
 import { ArrowsClockwise, MagnifyingGlass } from '@phosphor-icons/react'
-import { Button } from '../../../components/ui/Button'
-import { DataTable } from '../../../components/ui/DataTable'
-import { EmptyState } from '../../../components/ui/EmptyState'
-import { PageHeading } from '../../../components/ui/PageHeading'
-import { Panel } from '../../../components/ui/Panel'
-import { errorMessage } from '../../../lib/http'
-import type { Column, Row } from '../../../lib/mock'
-import { useWaitlistEntries } from '../hooks/use-waitlist-entries'
+import { Button } from '@/components/ui/Button'
+import { DataTable } from '@/components/ui/DataTable'
+import { EmptyState } from '@/components/ui/EmptyState'
+import { PageHeading } from '@/components/ui/PageHeading'
+import { Panel } from '@/components/ui/Panel'
+import { errorMessage } from '@/lib/http'
+import type { Column, Row } from '@/lib/mock'
+import { useWaitlistEntries } from '@/features/waitlist/hooks/use-waitlist-entries'
 
 const columns: Column[] = [
   { key: 'name', label: 'Name' },

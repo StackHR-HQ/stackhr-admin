@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom'
-import { HOME_PATH } from '../lib/nav'
-import { Button } from './ui/Button'
+import { HOME_PATH } from '@/lib/nav'
+import { Button } from '@/components/ui/Button'
 
 export function NotFound() {
   return (

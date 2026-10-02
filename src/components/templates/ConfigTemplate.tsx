@@ -1,8 +1,8 @@
 import { CheckCircle } from '@phosphor-icons/react'
-import type { NavItem, NavSection } from '../../lib/nav'
-import { Button } from '../ui/Button'
-import { PageHeading } from '../ui/PageHeading'
-import { Panel, PanelHeader } from '../ui/Panel'
+import type { NavItem, NavSection } from '@/lib/nav'
+import { Button } from '@/components/ui/Button'
+import { PageHeading } from '@/components/ui/PageHeading'
+import { Panel, PanelHeader } from '@/components/ui/Panel'
 
 type Field = { label: string; value: string; hint?: string; type?: string }
 

@@ -1,4 +1,4 @@
-import { type ApiEnvelope, http } from '../../../lib/http'
+import { type ApiEnvelope, http } from '@/lib/http'
 
 export type WaitlistEntry = {
   id: string

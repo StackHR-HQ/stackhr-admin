@@ -1,7 +1,7 @@
-import type { NavItem, NavSection } from '../lib/nav'
-import { ConfigTemplate } from './templates/ConfigTemplate'
-import { ListTemplate } from './templates/ListTemplate'
-import { OverviewTemplate } from './templates/OverviewTemplate'
+import type { NavItem, NavSection } from '@/lib/nav'
+import { ConfigTemplate } from '@/components/templates/ConfigTemplate'
+import { ListTemplate } from '@/components/templates/ListTemplate'
+import { OverviewTemplate } from '@/components/templates/OverviewTemplate'
 
 /** Renders the page template declared on a nav item. Route elements in
  *  `src/routes.tsx` pass the resolved section + item. */

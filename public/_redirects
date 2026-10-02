@@ -1,1 +1,2 @@
+/v1/api/*  /v1/api/:splat  404
 /*  /index.html  200

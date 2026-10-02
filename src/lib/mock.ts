@@ -2,7 +2,7 @@
  * Mock data for the scaffolded admin portal. Everything here is illustrative
  * sample data, not real figures — replace with API-backed data per section.
  */
-import { compactNaira, count, naira, seeded } from './format'
+import { compactNaira, count, naira, seeded } from '@/lib/format'
 
 export type ColumnKind = 'text' | 'num' | 'status' | 'money'
 export type Column = { key: string; label: string; kind?: ColumnKind; align?: 'right' }
