@@ -1,5 +1,5 @@
 import { clsx } from 'clsx'
-import { type Tone, toneFor } from '../../lib/status'
+import { type Tone, toneFor } from '@/lib/status'
 
 const styles: Record<Tone, string> = {
   positive: 'bg-positive-surface text-positive',

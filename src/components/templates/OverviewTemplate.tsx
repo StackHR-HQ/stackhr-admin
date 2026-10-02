@@ -1,20 +1,20 @@
 import { ArrowRight, CheckCircle, Info, Warning, WarningOctagon } from '@phosphor-icons/react'
 import { clsx } from 'clsx'
-import type { NavItem, NavSection } from '../../lib/nav'
-import { primaryDetailFor } from '../../lib/nav'
+import type { NavItem, NavSection } from '@/lib/nav'
+import { primaryDetailFor } from '@/lib/nav'
 import {
   activityFeed,
   attentionItems,
   datasetFor,
   metricsFor,
   type ActivityEntry,
-} from '../../lib/mock'
-import { longDate, seeded } from '../../lib/format'
-import { Button } from '../ui/Button'
-import { DataTable } from '../ui/DataTable'
-import { MetricCard } from '../ui/MetricCard'
-import { PageHeading } from '../ui/PageHeading'
-import { Panel, PanelHeader } from '../ui/Panel'
+} from '@/lib/mock'
+import { longDate, seeded } from '@/lib/format'
+import { Button } from '@/components/ui/Button'
+import { DataTable } from '@/components/ui/DataTable'
+import { MetricCard } from '@/components/ui/MetricCard'
+import { PageHeading } from '@/components/ui/PageHeading'
+import { Panel, PanelHeader } from '@/components/ui/Panel'
 import { useNavigate } from 'react-router-dom'
 
 const activityIcon: Record<ActivityEntry['type'], typeof CheckCircle> = {

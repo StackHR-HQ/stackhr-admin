@@ -2,7 +2,7 @@ import { useMemo, useState } from 'react'
 import { NavLink, useLocation } from 'react-router-dom'
 import { CaretRight, MagnifyingGlass } from '@phosphor-icons/react'
 import { clsx } from 'clsx'
-import { type NavItem, sections } from '../../lib/nav'
+import { type NavItem, sections } from '@/lib/nav'
 
 const linkClass = ({ isActive }: { isActive: boolean }) =>
   clsx(

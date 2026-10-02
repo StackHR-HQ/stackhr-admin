@@ -1,5 +1,5 @@
 import { Export, FunnelSimple, MagnifyingGlass } from '@phosphor-icons/react'
-import { Button } from './Button'
+import { Button } from '@/components/ui/Button'
 
 export function FilterBar({ placeholder }: { placeholder: string }) {
   return (

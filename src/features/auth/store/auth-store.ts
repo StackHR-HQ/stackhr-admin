@@ -1,6 +1,6 @@
 import { create } from 'zustand'
 import { persist } from 'zustand/middleware'
-import type { AuthSession } from '../types'
+import type { AuthSession } from '@/features/auth/types'
 
 type AuthState = {
   session: AuthSession | null

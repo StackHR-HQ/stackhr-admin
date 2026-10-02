@@ -1,9 +1,9 @@
-import { List as ListIcon, Bell, MagnifyingGlass, SignOut } from '@phosphor-icons/react'
+import { List as ListIcon, Bell, Key, MagnifyingGlass, SignOut } from '@phosphor-icons/react'
 import { useQueryClient } from '@tanstack/react-query'
 import { Link, useLocation } from 'react-router-dom'
-import { useAuthStore } from '../../features/auth/store/auth-store'
-import { initials } from '../../lib/format'
-import { sectionBySlug } from '../../lib/nav'
+import { useAuthStore } from '@/features/auth/store/auth-store'
+import { initials } from '@/lib/format'
+import { sectionBySlug } from '@/lib/nav'
 
 function useCrumbs() {
   const { pathname } = useLocation()
@@ -95,6 +95,14 @@ export function Topbar({ onMenu }: { onMenu: () => void }) {
             <span className="text-[13px] font-semibold text-ink">{user?.name ?? user?.email}</span>
             <span className="text-[11px] text-muted">{user?.email}</span>
           </span>
+          <Link
+            to="/settings/security?tab=password"
+            className="grid size-9 place-items-center rounded-lg text-muted hover:bg-surface-2"
+            aria-label="Change password"
+            title="Change password"
+          >
+            <Key size={18} />
+          </Link>
           <button
             onClick={signOut}
             className="grid size-9 place-items-center rounded-lg text-muted hover:bg-surface-2"

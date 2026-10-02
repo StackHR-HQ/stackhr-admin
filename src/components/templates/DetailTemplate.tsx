@@ -1,14 +1,14 @@
 import { useParams, useSearchParams } from 'react-router-dom'
 import { CaretDown } from '@phosphor-icons/react'
-import type { NavDetail } from '../../lib/nav'
-import { datasetFor, findRecord } from '../../lib/mock'
-import { initials, titleCase } from '../../lib/format'
-import { Button } from '../ui/Button'
-import { DataTable } from '../ui/DataTable'
-import { PageHeading } from '../ui/PageHeading'
-import { Panel, PanelHeader } from '../ui/Panel'
-import { StatusBadge } from '../ui/StatusBadge'
-import { Tabs } from '../ui/Tabs'
+import type { NavDetail } from '@/lib/nav'
+import { datasetFor, findRecord } from '@/lib/mock'
+import { initials, titleCase } from '@/lib/format'
+import { Button } from '@/components/ui/Button'
+import { DataTable } from '@/components/ui/DataTable'
+import { PageHeading } from '@/components/ui/PageHeading'
+import { Panel, PanelHeader } from '@/components/ui/Panel'
+import { StatusBadge } from '@/components/ui/StatusBadge'
+import { Tabs } from '@/components/ui/Tabs'
 
 export function DetailTemplate({ detail }: { detail: NavDetail }) {
   const [params, setParams] = useSearchParams()

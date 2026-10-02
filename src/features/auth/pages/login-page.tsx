@@ -1,10 +1,10 @@
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useForm } from 'react-hook-form'
-import { useLocation, useNavigate } from 'react-router-dom'
-import { Button } from '../../../components/ui/Button'
-import { errorMessage } from '../../../lib/http'
-import { useLogin } from '../hooks/use-login'
-import { type LoginValues, loginSchema } from '../schemas/login-schema'
+import { Link, useLocation, useNavigate } from 'react-router-dom'
+import { Button } from '@/components/ui/Button'
+import { errorMessage } from '@/lib/http'
+import { useLogin } from '@/features/auth/hooks/use-login'
+import { type LoginValues, loginSchema } from '@/features/auth/schemas/login-schema'
 
 const inputClass =
   'h-10 w-full rounded-lg border border-line bg-canvas px-3 text-sm text-ink outline-none ' +
@@ -13,7 +13,8 @@ const inputClass =
 export function LoginPage() {
   const navigate = useNavigate()
   const location = useLocation()
-  const from = (location.state as { from?: string } | null)?.from ?? '/'
+  const state = location.state as { from?: string; resetSuccess?: boolean } | null
+  const from = state?.from ?? '/'
   const login = useLogin()
   const {
     register,
@@ -36,6 +37,12 @@ export function LoginPage() {
         </div>
 
         <form onSubmit={handleSubmit(onSubmit)} noValidate className="flex flex-col gap-4">
+          {state?.resetSuccess ? (
+            <p className="rounded-lg bg-positive-surface px-3 py-2 text-[13px] text-positive">
+              Password reset. Sign in with your new password.
+            </p>
+          ) : null}
+
           <div>
             <label htmlFor="email" className="mb-1.5 block text-[13px] font-medium">
               Email
@@ -52,9 +59,14 @@ export function LoginPage() {
           </div>
 
           <div>
-            <label htmlFor="password" className="mb-1.5 block text-[13px] font-medium">
-              Password
-            </label>
+            <div className="mb-1.5 flex items-center justify-between">
+              <label htmlFor="password" className="block text-[13px] font-medium">
+                Password
+              </label>
+              <Link to="/forgot-password" className="text-[13px] font-medium text-accent hover:underline">
+                Forgot password?
+              </Link>
+            </div>
             <input
               id="password"
               type="password"
